@@ -1,26 +1,23 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
-
 class HomeController extends GetxController {
-  //TODO: Implement HomeController
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-  Future<QuerySnapshot<Object?>> GetData() async{
-    CollectionReference products = firestore.collection('products');
-
-    return products.get();
-  }
-  
-  Stream<QuerySnapshot<Object?>> streamData(){
-    CollectionReference products = firestore.collection('products');
-    return products.snapshots();
+  Future<QuerySnapshot<Object?>> getMahasiswaData() async {
+    CollectionReference mahasiswa = firestore.collection('mahasiswa');
+    return mahasiswa.get();
   }
 
-  void deleteProduct(String id){
-    DocumentReference docRef = firestore.collection("products").doc(id);
+  Stream<QuerySnapshot<Object?>> streamMahasiswaData() {
+    CollectionReference mahasiswa = firestore.collection('mahasiswa');
+    return mahasiswa.snapshots();
+  }
 
-    try{
+  void deleteMahasiswa(String id) {
+    DocumentReference docRef = firestore.collection("mahasiswa").doc(id);
+
+    try {
       Get.defaultDialog(
         title: "Info",
         middleText: "Apakah anda yakin menghapus data ini ?",

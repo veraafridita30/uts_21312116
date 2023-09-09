@@ -27,7 +27,7 @@ class HomeView extends GetView<HomeController> {
           ListTile(
             onTap: () {
               Get.back();
-              controller.deleteProduct(id);
+              controller.deleteMahasiswa(id);
             },
             title: Text("Delete"),
           ),
@@ -45,7 +45,7 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: const Text('Data Product'),
+          title: const Text('HOME'),
           centerTitle: true,
           actions: [
             IconButton(
@@ -78,7 +78,7 @@ class HomeView extends GetView<HomeController> {
 
     // 2. Menampilkan data secara realtime
       body: StreamBuilder<QuerySnapshot<Object?>>(
-        stream: controller.streamData(),
+        stream: controller.streamMahasiswaData(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.active) {
             // mengambil data
@@ -107,8 +107,9 @@ class HomeView extends GetView<HomeController> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => Get.toNamed(Routes.ADD_PRODUCT),
-        child: Icon(Icons.add),),
+        onPressed: () => Get.toNamed(Routes.ADD_MAHASISWA),
+        child: Icon(Icons.add),
+    )
     );
   }
 }
